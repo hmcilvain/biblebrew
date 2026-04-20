@@ -1,0 +1,6 @@
+hugo/public/
+hugo/resources/_gen/
+backend/logs/*
+backend/data/*.json
+.DS_Store
+.vscode/
