@@ -1,34 +1,44 @@
 {{ define "main" }}
 
-<!--section class="hero" data-hero-size="{{ .Params.hero_size }}">
-    <div class="container grid" style="--grid-template: var(--layout-1-2); align-items: center;">        
-        <div><!-- LEFT --
-            <img src="/assets/images/10-minute-bible-brew_logo.png" alt="10 Minute Bible Brew Logo" class="hero-logo">
-        </div>       
-        <div> <!-- RIGHT --
-            <h1>Useful Resources</h1>
-            <p>Find links to Study Guides, Devotionals, Study Tools and much more...</p>
-        </div>
-    </div>
-</section-->
-
 {{ partial "hero.html" . }}
 
+
+{{ $pages := where .Pages "Type" "resource" }}
+{{ $internal := where $pages "Params.source_type" "internal" }}
+{{ $external := where $pages "Params.source_type" "external" }}
+
 <section class="section container-narrow">
-    <h1>{{ .Title }}</h1>
-    <p class="meta">{{ .Params.description }}</p>
+    <h2>Internal Resources</h2>
+
+    {{ range $group := $internal.GroupByParam "category" }}
+    <h3 class="meta">{{ $group.Key }}</h3>
+    <div class="grid" style="--grid-cols: 2;">
+        {{ range sort $group.Pages "Title" }}{{ partial "resource-card.html" . }}{{ end }}
+    </div>
+    {{ end }}
 </section>
 
-<section class="section">
 
+{{ partial "resource_disclaimer.html" . }}
+
+
+<section class="section container-narrow">
+    <h2>External Resources</h2>
+
+    {{ range $group := $external.GroupByParam "category" }}
+    
+    <h3 class="meta">{{ $group.Key }}</h3>
+    
     <div class="grid" style="--grid-cols: 2;">
-
-        {{ range .Pages }}
+        {{ range sort $group.Pages "Title" }}
         {{ partial "resource-card.html" . }}
         {{ end }}
-
     </div>
+    
+    {{ end }}
+
 
 </section>
+
 
 {{ end }}
