@@ -1,18 +1,34 @@
 {{ define "main" }}
 
-<h1>Study Guides & Resources</h1>
-
-<div class="grid">
-    {{ range .Pages }}
-    <div class="card">
-        <h3>{{ .Title }}</h3>
-        <p>{{ .Summary }}</p>
-
-        <a href="/api/download.php?file={{ .Params.file }}">
-            Download
-        </a>
+<!--section class="hero" data-hero-size="{{ .Params.hero_size }}">
+    <div class="container grid" style="--grid-template: var(--layout-1-2); align-items: center;">        
+        <div><!-- LEFT --
+            <img src="/assets/images/10-minute-bible-brew_logo.png" alt="10 Minute Bible Brew Logo" class="hero-logo">
+        </div>       
+        <div> <!-- RIGHT --
+            <h1>Useful Resources</h1>
+            <p>Find links to Study Guides, Devotionals, Study Tools and much more...</p>
+        </div>
     </div>
-    {{ end }}
-</div>
+</section-->
+
+{{ partial "hero.html" . }}
+
+<section class="section container-narrow">
+    <h1>{{ .Title }}</h1>
+    <p class="meta">{{ .Params.description }}</p>
+</section>
+
+<section class="section">
+
+    <div class="grid" style="--grid-cols: 2;">
+
+        {{ range .Pages }}
+        {{ partial "resource-card.html" . }}
+        {{ end }}
+
+    </div>
+
+</section>
 
 {{ end }}

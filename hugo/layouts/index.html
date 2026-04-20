@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+
+<section class="hero" data-hero-size="{{ .Params.hero_size | default "lg" }}">
+    <div class="container grid" style="--grid-template: var(--layout-1-2); align-items: center;">
+        <!-- LEFT -->
+        <div>
+            <img src="/assets/images/10-minute-bible-brew_logo.png" alt="10 Minute Bible Brew Logo" class="hero-logo">
+        </div>
+
+        <!-- RIGHT -->
+        <div>
+            <h1>Slow Down. Open Scripture. Hear God.</h1>
+            <p>“Grab your coffee, open your Bible, and let’s brew some truth from God’s Word.” </p>
+
+            <div class="hero-buttons">
+                <a class="btn" href="/episodes/">Start Watching</a>
+                <a class="btn btn-secondary" href="/subscribe/">Subscribe</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="container featured">
+    <h2>Featured Episode</h2>
+
+    {{ range first 1 (where .Site.RegularPages "Section" "episodes") }}
+    <div class="card">
+        <span class="badge">Latest</span>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p>{{ .Summary }}</p>
+    </div>
+    {{ end }}
+</section>
+
+<section class="container section">
+    <h2><img src="/assets/images/moka_pot.png" alt="Moka Pot" class="icon_50"> Recent Episodes</h2>
+
+    <div class="grid">
+        {{ range first 6 (where .Site.RegularPages "Section" "episodes") }}
+        <div class="card">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ .Summary }}</p>
+            <div class="meta">{{ .Date.Format "Jan 2, 2006" }}</div>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<section class="container section">
+    <div class="subscribe-box">
+        <h2><img src="/assets/images/coffee_mug.png" alt="Coffee Mug" class="icon_50"> Stay Brewed</h2>
+        <p>Get new episodes and study guides delivered to your inbox.</p>
+
+        <form method="POST" action="/api/subscribe.php">
+            <input type="email" name="email" placeholder="Your email" required>
+            <button class="btn">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+{{ end }}

@@ -21,5 +21,12 @@ CREATE TABLE subscribers (
     email VARCHAR(255) UNIQUE,
     uid VARCHAR(64),
     ip VARCHAR(45),
-    created_at DATETIME
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    address VARCHAR(255),
+    city VARCHAR(100),
+    state VARCHAR(50),
+    zip_code VARCHAR(20),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_email_sent DATETIME DEFAULT NULL
 );

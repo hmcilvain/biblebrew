@@ -1,0 +1,24 @@
+{{- $page := . -}}
+
+<section class="hero" data-hero-size="{{ $page.Params.hero_size | default " lg" }}">
+
+    <div class="grid" style="--grid-template: var(--layout-1-2); align-items: center;">
+
+        <!-- LEFT (optional image/logo) -->
+        <div>
+            <img src="/assets/images/10-minute-bible-brew_logo.png" alt="10 Minute Bible Brew Logo" class="hero-logo">
+        </div>
+
+        <!-- RIGHT -->
+        <div>
+            <h1>{{ $page.Params.hero_title }}</h1>
+
+            {{ with $page.Params.hero_subtitle }}
+            <p>{{ . }}</p>
+            {{ end }}
+
+        </div>
+
+    </div>
+
+</section>
