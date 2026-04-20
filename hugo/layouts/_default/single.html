@@ -1,0 +1,20 @@
+{{ define "main" }}
+
+<article class="post">
+
+    <h1>{{ .Title }}</h1>
+    <p class="meta">{{ .Date.Format "Jan 2, 2006" }}</p>
+
+    <div class="content">
+        {{ .Content }}
+    </div>
+
+    {{ with .Params.study_file }}
+    <a class="download" href="/api/download.php?file={{ . }}">
+        Download Study Guide
+    </a>
+    {{ end }}
+
+</article>
+
+{{ end }}

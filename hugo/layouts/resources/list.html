@@ -1,0 +1,18 @@
+{{ define "main" }}
+
+<h1>Study Guides & Resources</h1>
+
+<div class="grid">
+    {{ range .Pages }}
+    <div class="card">
+        <h3>{{ .Title }}</h3>
+        <p>{{ .Summary }}</p>
+
+        <a href="/api/download.php?file={{ .Params.file }}">
+            Download
+        </a>
+    </div>
+    {{ end }}
+</div>
+
+{{ end }}
