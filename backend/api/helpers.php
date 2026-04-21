@@ -21,6 +21,15 @@ function cors()
     }
 }
 
+function checkApiKey()
+{
+    $headers = getallheaders();
+    if (($headers['X-API-KEY'] ?? '') !== API_KEY) {
+        jsonResponse(["error" => "Unauthorized"], 401);
+    }
+}
+
+
 function get_json_input()
 {
     $raw = file_get_contents("php://input");
@@ -58,4 +67,17 @@ function require_post()
 function ensure_dir($path)
 {
     if (!is_dir($path)) mkdir($path, 0775, true);
+}
+
+function jsonResponse($data, $code = 200)
+{
+    header("Content-Type: application/json");
+    http_response_code($code);
+    echo json_encode($data);
+    exit;
+}
+
+function sanitize($str)
+{
+    return htmlspecialchars(trim($str), ENT_QUOTES, 'UTF-8');
 }

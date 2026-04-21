@@ -1,8 +1,7 @@
 ---
-title: "Episode 1 - Start Here"
-date: 2026-04-19
-summary: "Introduction to 10 Minute Bible Brew"
-study_file: "study-guide-1"
+title: "How the Bible Says We Should Study the Bible"
+date: 2026-04-11T02:52:50+00:00
+thumbnail_url: "https://i2.ytimg.com/vi/it81g7i9L00/hqdefault.jpg"
+view_url: "https://youtube.com/watch?v=v0UGTcO87XU"
 ---
-
-Welcome to Bible Brew ☕
+How does the Bible say we should study the Bible? In this episode of Ten Minute Bible Brew, we walk through Scripture itself to uncover the biblical method of studying God’s Word—clearly, simply, and in just a few minutes. This isn’t about reading more… It’s about understanding better. In this episode, we cover: Why the Bible commands us to study (2 Timothy 2:15) How to compare Scripture with Scripture (1 Corinthians 2:13) The role of the Holy Spirit in understanding truth (John 16:13) Why obedience is key to deeper understanding (John 7:17) Key Verse: “Study to shew thyself approved unto God…” — 2 Timothy 2:15 (KJV) If you want to go deeper, visit: 👉 10MinuteBibleBrew.com Download study guides, find additional resources, and follow along with future episodes. About the Channel: Ten Minute Bible Brew is designed to help you grow in God’s Word—one short, focused study at a time. From Light Roast (foundational truths)… To Dark Roast (deeper study)… To Percolated series that build understanding step by step— There’s something here for every stage of your journey. Subscribe for more Bible studies each week. Grab your Bible… maybe a cup of coffee… And let’s start brewing ☕ #BibleStudy #HowToStudyTheBible #ChristianTeaching #ScriptureStudy #BibleTruth #FaithInGod #KJV #ChristianGrowth #TenMinuteBibleBrew #StudyTheWord #RightlyDividing #DailyDevotion #CompareScripture

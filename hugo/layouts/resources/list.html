@@ -7,38 +7,50 @@
 {{ $internal := where $pages "Params.source_type" "internal" }}
 {{ $external := where $pages "Params.source_type" "external" }}
 
+{{ $guides := where .Site.RegularPages "Type" "study_guide" }}
+
+
+{{ if gt (len $guides) 0 }}
 <section class="section container-narrow">
-    <h2>Internal Resources</h2>
+    <h1>Downloadable Study Guides</h1>
+    {{ range $guides }}
+    <div class="resource-row">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="meta">Study Guide [{{upper .Params.file_type}}] for Episode Posted on {{ .Date.Format "April 2, 2006" }}</span>
+    </div>
+    {{ end }}
+</section>
+{{ end }}   
+
+
+
+{{ if gt (len $internal) 0 }}
+<section class="section container-narrow">
+    <h1>Internal Resources</h1>
 
     {{ range $group := $internal.GroupByParam "category" }}
-    <h3 class="meta">{{ $group.Key }}</h3>
+    <h2>{{ $group.Key }}</h2>
     <div class="grid" style="--grid-cols: 2;">
         {{ range sort $group.Pages "Title" }}{{ partial "resource-card.html" . }}{{ end }}
     </div>
     {{ end }}
 </section>
+{{ end }}
 
 
-{{ partial "resource_disclaimer.html" . }}
-
-
+{{ if gt (len $external) 0 }}
 <section class="section container-narrow">
-    <h2>External Resources</h2>
-
-    {{ range $group := $external.GroupByParam "category" }}
-    
-    <h3 class="meta">{{ $group.Key }}</h3>
-    
+    <h1>External Resources</h1>
+{{ partial "resource_disclaimer.html" . }}
+    {{ range $group := $external.GroupByParam "category" }}    
+    <h2>{{ $group.Key }}</h2>    
     <div class="grid" style="--grid-cols: 2;">
         {{ range sort $group.Pages "Title" }}
         {{ partial "resource-card.html" . }}
         {{ end }}
-    </div>
-    
+    </div>    
     {{ end }}
-
-
 </section>
-
+{{ end }}
 
 {{ end }}

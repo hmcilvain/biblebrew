@@ -1,30 +1,27 @@
 <?php
+require_once 'db.php';
 require_once 'helpers.php';
-require_once 'dal.php';
 
-global $DOWNLOAD_FILES;
+cors();
+requirePost();
 
-$key = $_GET['file'] ?? '';
+$data = getJsonInput();
 
-if (!isset($DOWNLOAD_FILES[$key])) {
-    http_response_code(404);
-    exit;
+$file = sanitize($data['file'] ?? '');
+$visitor = sanitize($data['visitor_id'] ?? '');
+$ip = getIP();
+
+if (!$file) {
+    jsonResponse(["error" => "Missing file"], 400);
 }
 
-$file = DOWNLOAD_PATH . $DOWNLOAD_FILES[$key];
+$db = getDB();
 
-if (!file_exists($file)) {
-    http_response_code(404);
-    exit;
-}
+$stmt = $db->prepare("
+    INSERT INTO downloads (file, visitor_id, ip_address)
+    VALUES (?, ?, ?)
+");
 
-DAL::logDownload([
-    'file' => $key,
-    'uid'  => get_uid(),
-    'ip'   => get_ip()
-]);
+$stmt->execute([$file, $visitor, $ip]);
 
-header('Content-Type: application/octet-stream');
-header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-readfile($file);
-exit;
+jsonResponse(["status" => "logged"]);

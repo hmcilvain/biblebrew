@@ -1,6 +1,7 @@
 ---
 title: "Home"
 type: home
+date: 2000-01-01
 
 hero_enabled: true
 hero_size: "lg"

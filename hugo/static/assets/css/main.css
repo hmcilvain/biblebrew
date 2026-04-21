@@ -112,6 +112,34 @@ h2 {
     margin-bottom: var(--space-6);
 }
 
+section > h2 {
+    margin-top: 0;
+    font-size: var(--space-8);
+    font-style: italic;
+}
+
+
+.grid .card h2 {
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--brew_color_saddlebrown);
+    margin: 0 0 var(--space-4) 0;    
+}
+
+.grid .card-title {
+    width: calc(100% + var(--space-4));
+    margin: calc(-1 * var(--space-2));
+    border-radius: 10px 10px 0 0;
+    background-color: var(--brew_color_sand);
+    text-align: center;
+}
+
+h2 img {
+    height: 90px;
+    margin: var(--space-1);
+    vertical-align: middle;
+}
+
 /* =========================================================== LAYOUT ================================================================ */
 
 /* ===== CONTAINER SYSTEM ===== */
@@ -127,6 +155,12 @@ h2 {
 
 .container.featured {
     padding: var(--space-6);
+}
+
+.btn-container {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
 }
 
 
@@ -211,6 +245,14 @@ h2 {
     gap: var(--space-3);
 }
 
+.hero p {
+    font-size: var(--space-6);
+    margin: var(--space-1);
+}
+.hero h1 {
+    /*font-size: var(--space-6);*/
+    margin: var(--space-1);
+}
 /* BUTTONS */
 .hero-buttons {
     margin-top: var(--space-6);
@@ -240,6 +282,12 @@ h2 {
     background: transparent;
     border: 2px solid var(--border);
     color: var(--brew_color_master_text);
+}
+
+.btn.full-width {
+    width: 90%;
+    justify-content: center;
+    margin: 0 0 var(--space-4) 0;
 }
 
 /* ===== FEATURED SECTION ===== */
@@ -273,6 +321,10 @@ h2 {
     grid-template-columns: var(--grid-template, repeat(var(--grid-cols, 1), minmax(0, 1fr)));
 }
 
+.grid .card {
+    padding: var(--space-2);
+}
+
 /* ===== CARD ===== */
 
 .card {
@@ -283,7 +335,7 @@ h2 {
     transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
-.card:hover {
+.card:hover:not(.no-hover), .resource-row:hover:not(.no-hover) {
     transform: translateY(-4px);
     border-color: var(--brew_color_medium_roast);
 }
@@ -343,6 +395,12 @@ h2 {
     color: var(--text-muted);
 }
 
+.site-footer .copyright {
+    font: italic 700 1.8rem var(--brew_title_font_family);
+    color: var(--brew_color_gold_highlight);
+    vertical-align: middle;
+}
+
 
 /* Page wrapper */
 .page {
@@ -359,6 +417,57 @@ h2 {
     vertical-align: baseline;
     margin-right: var(--space-1);
 }
+
+img.tile {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.resource-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.resource-row a {
+    font-weight: 600;
+    color: var(--brew_color_dark_roast);
+    text-decoration: none;
+}
+
+.resource-row a:hover {
+    color: var(--brew_color_burnt_orange);
+}
+
+.resource-row .meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.resource-row a::after {
+    content: " →";
+    opacity: 0.4;
+}
+
+.resource-row {
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg-card);
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

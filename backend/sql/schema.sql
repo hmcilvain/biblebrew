@@ -8,25 +8,33 @@ CREATE TABLE events (
     created_at DATETIME
 );
 
-CREATE TABLE downloads (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    uid VARCHAR(64),
-    file_key VARCHAR(64),
-    ip VARCHAR(45),
-    created_at DATETIME
+
+CREATE TABLE page_views (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    visitor_id VARCHAR(64),
+    path VARCHAR(255),
+    referrer TEXT,
+    ip_address VARCHAR(45),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE subscribers (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) UNIQUE,
-    uid VARCHAR(64),
-    ip VARCHAR(45),
-    first_name VARCHAR(100),
-    last_name VARCHAR(100),
-    address VARCHAR(255),
-    city VARCHAR(100),
-    state VARCHAR(50),
-    zip_code VARCHAR(20),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    last_email_sent DATETIME DEFAULT NULL
+    ip_address VARCHAR(45),
+	first_name VARCHAR(100),
+	last_name VARCHAR(100),
+	address VARCHAR(255),
+	city VARCHAR(100),
+	state VARCHAR(50),
+	zip_code VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE downloads (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    file VARCHAR(255),
+    visitor_id VARCHAR(64),
+    ip_address VARCHAR(45),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

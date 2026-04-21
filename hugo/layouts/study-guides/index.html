@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+<section class="hero section">
+    <div class="container-narrow">
+        <h1>{{ .Title }}</h1>
+        <p class="meta">{{ .Params.description }}</p>
+    </div>
+</section>
+
+<section class="section container-narrow">
+
+    {{ if .Params.file }}
+    <a class="btn" href="{{ .Params.file }}" download>
+        Download Study Guide ({{ .Params.file_type }})
+    </a>
+    {{ end }}
+
+    {{ if .Params.source_video }}
+    <p>
+        <a href="{{ .Params.source_video }}" target="_blank">
+            Watch related video →
+        </a>
+    </p>
+    {{ end }}
+
+</section>
+
+{{ end }}

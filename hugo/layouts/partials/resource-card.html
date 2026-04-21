@@ -1,3 +1,5 @@
+<!--
+
 <div class="card">
 
     <div class="chip">{{ .Params.category }}</div>
@@ -10,4 +12,10 @@
         Visit Resource
     </a>
 
+</div>
+
+-->
+<div class="resource-row">
+    <a href="{{ .Params.external_url }}" target="_blank">{{ .Title }}</a>
+    <span class="meta">{{ .Params.description }}</span>
 </div>

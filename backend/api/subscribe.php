@@ -1,22 +1,27 @@
 <?php
+require_once 'db.php';
 require_once 'helpers.php';
-require_once 'dal.php';
 
 cors();
-require_post();
+requirePost();
 
-$email = $_POST['email'] ?? '';
+$email = sanitize($_POST['email'] ?? '');
+$ip = getIP();
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(400);
-    exit('Invalid email');
+    jsonResponse(["error" => "Invalid email"], 400);
 }
 
-DAL::addSubscriber([
-    'email' => $email,
-    'uid'   => get_uid(),
-    'ip'    => get_ip()
-]);
+$db = getDB();
 
-header('Location: /subscribe/?success=1');
-exit;
+try {
+    $stmt = $db->prepare("
+        INSERT INTO subscribers (email, ip_address)
+        VALUES (?, ?)
+    ");
+    $stmt->execute([$email, $ip]);
+
+    jsonResponse(["status" => "subscribed"]);
+} catch (PDOException $e) {
+    jsonResponse(["error" => "Already subscribed"], 409);
+}

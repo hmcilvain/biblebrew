@@ -3,31 +3,46 @@
 {{ partial "hero.html" . }}
 
 
-<section class="container featured">
-    <h2>Featured Episode</h2>
-
-    {{ range first 1 (where .Site.RegularPages "Section" "episodes") }}
-    <div class="card">
-        <span class="badge">Latest</span>
-        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        <p>{{ .Summary }}</p>
-    </div>
-    {{ end }}
-</section>
-
-<section class="container section">
-    <h2><img src="/assets/images/moka_pot.png" alt="Moka Pot" class="icon_50"> Recent Episodes</h2>
-
-    <div class="grid">
-        {{ range first 6 (where .Site.RegularPages "Section" "episodes") }}
-        <div class="card">
-            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-            <p>{{ .Summary }}</p>
-            <div class="meta">{{ .Date.Format "Jan 2, 2006" }}</div>
+<section class="container section grid" style="--grid-cols: 3;">
+    <div class="card no-hover">
+        <div class="card-title">
+            <h2><img src="/assets/images/bible.png" alt="Bible"> Fresh Ground</h2>
+        </div>
+        {{ range first 1 (sort (where .Site.RegularPages "Section" "episodes") "Date" "desc") }}
+        <img src="{{ .Params.thumbnail_url }}" alt="{{ .Title }}" class="tile">
+        <h3><a href="{{ .Params.view_url }}" target="_youTubeWin">{{ .Title }}</a></h3>
+        <p>{{ .Summary  | strings.Truncate 125}}</p>
+        <div class="btn-container">
+            <a href="{{ .Params.view_url }}" target="_youTubeWin" class="btn">View</a>
         </div>
         {{ end }}
     </div>
+    <div class="card no-hover">
+        <div class="card-title">
+            <h2><img src="/assets/images/coffee_mug.png" alt="Coffee Mug"> Featured Resources</h2>
+        </div>       
+        <div class="container">
+            <h3>A Virtual Library</h3>
+            <ul>
+                <li>Bible study PDFs</li>
+                <li>Devotional books</li>
+                <li>Links to Useful Bible Study Tools</li>
+            </ul>
+        </div>
+        <div class="btn-container">
+            <a href="resources/"  class="btn full-width">Go to <em>Resources Page</em></a>
+        </div>
+    </div>
+    <div class="card no-hover">
+        <div class="card-title">
+            <h2><img src="/assets/images/moka_pot.png" alt="Moka Pot"> The Brew Shop</h2>
+        </div>    
+        <div class="container">
+            <img src="/assets/images/coming-soon.jpg" alt="Coming Soon" class="tile">
+        </div>
+    </div>
 </section>
+
 
 <section class="container section">
     <div class="subscribe-box">
