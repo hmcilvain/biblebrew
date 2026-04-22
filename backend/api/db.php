@@ -1,6 +1,6 @@
 <?php
 
-function db()
+function getDB()
 {
     static $pdo;
 

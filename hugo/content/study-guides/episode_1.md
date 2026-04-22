@@ -9,7 +9,7 @@ category: "Bible Study Methods"
 description: "A practical guide to studying Scripture effectively."
 
 file_type: pdf
-file: "/downloads/episode_1_study_guide.pdf"
+file_id: "a3f2c1d9-91b2-4c77-9d12-abc123xyz"
 
 source_video: "https://www.youtube.com/watch?v=it81g7i9L00"
 

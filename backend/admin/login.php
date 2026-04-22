@@ -1,43 +1,38 @@
 <?php
-require_once 'auth.php';
-
-$error = '';
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (
-        $_POST['username'] === ADMIN_USER &&
-        $_POST['password'] === ADMIN_PASS
-    ) {
-        $_SESSION['logged_in'] = true;
-        header('Location: /admin/');
+    $user = $_POST['username'] ?? '';
+    $pass = $_POST['password'] ?? '';
+
+    if ($user === 'admin' && $pass === 'hm0698') {
+        $_SESSION['admin'] = true;
+        header("Location: /admin/");
         exit;
-    } else {
-        $error = "Invalid login";
     }
+
+    $error = "Invalid login";
 }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
     <title>Admin Login</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 
-<body>
+<body class="container-reading section">
+    <h2>Admin Login</h2>
 
-    <h2>Login</h2>
-
-    <?php if ($error): ?>
-        <p style="color:red;"><?= $error ?></p>
-    <?php endif; ?>
+    <?php if (!empty($error)) echo "<p>$error</p>"; ?>
 
     <form method="POST">
-        <input name="username" placeholder="Username">
-        <input name="password" type="password" placeholder="Password">
-        <button type="submit">Login</button>
+        <input name="username" placeholder="Username"><br><br>
+        <input name="password" type="password" placeholder="Password"><br><br>
+        <button class="btn">Login</button>
     </form>
-
 </body>
 
 </html>

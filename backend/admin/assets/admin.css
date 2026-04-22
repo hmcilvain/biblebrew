@@ -1,0 +1,11 @@
+.stat p {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: var(--space-2);
+}
+
+#top-pages li,
+#subscriber-list li {
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border);
+}

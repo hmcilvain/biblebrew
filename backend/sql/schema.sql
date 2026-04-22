@@ -21,6 +21,7 @@ CREATE TABLE page_views (
 CREATE TABLE subscribers (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) UNIQUE,
+    visitor_id VARCHAR(64),
     ip_address VARCHAR(45),
 	first_name VARCHAR(100),
 	last_name VARCHAR(100),
@@ -37,4 +38,18 @@ CREATE TABLE downloads (
     visitor_id VARCHAR(64),
     ip_address VARCHAR(45),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE downloadables (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    uuid CHAR(36) NOT NULL UNIQUE,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NULL,
+    file_path TEXT NOT NULL,
+    mime_type VARCHAR(100) DEFAULT 'application/pdf',
+    file_size INT NULL,
+    category VARCHAR(100) NULL,
+    is_active TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

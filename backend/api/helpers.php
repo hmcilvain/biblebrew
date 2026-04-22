@@ -4,10 +4,9 @@ require_once 'config.php';
 
 function cors()
 {
-    global $ALLOWED_ORIGINS;
     $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
-    if (in_array($origin, $ALLOWED_ORIGINS, true)) {
+    if (in_array($origin, ALLOWED_ORIGINS, true)) {
         header("Access-Control-Allow-Origin: $origin");
         header("Vary: Origin");
     }
@@ -30,7 +29,7 @@ function checkApiKey()
 }
 
 
-function get_json_input()
+function getJsonInput()
 {
     $raw = file_get_contents("php://input");
     if (strlen($raw) > MAX_POST_SIZE) {
@@ -40,7 +39,7 @@ function get_json_input()
     return json_decode($raw, true) ?? [];
 }
 
-function get_ip()
+function getIP()
 {
     return $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 }
@@ -56,7 +55,7 @@ function get_uid()
     return 'anon_' . substr(md5(get_ip()), 0, 8);
 }
 
-function require_post()
+function requirePost()
 {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         http_response_code(405);

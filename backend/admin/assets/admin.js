@@ -1,27 +1,36 @@
-async function loadDashboard() {
-  const res = await fetch('/admin/api.php');
-  const data = await res.json();
+async function loadStats() {
+    const res = await fetch("/api/stats.php");
+    const data = await res.json();
 
-  // Subscribers
-  document.getElementById('subs').innerText = data.subscribers;
+    document.getElementById("views").textContent = data.views;
+    document.getElementById("downloads").textContent = data.downloads;
+    document.getElementById("subs").textContent = data.subscribers;
 
-  // Downloads
-  const dlList = document.getElementById('downloads');
-  dlList.innerHTML = '';
-  data.downloads.forEach(d => {
-    const li = document.createElement('li');
-    li.textContent = `${d.file_key}: ${d.total}`;
-    dlList.appendChild(li);
-  });
+    const pages = document.getElementById("top-pages");
+    pages.innerHTML = "";
 
-  // Events
-  const evList = document.getElementById('events');
-  evList.innerHTML = '';
-  data.events.forEach(e => {
-    const li = document.createElement('li');
-    li.textContent = `${e.type} | ${e.path} | ${e.created_at}`;
-    evList.appendChild(li);
-  });
+    data.top_pages.forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = `${p.path} (${p.count})`;
+        pages.appendChild(li);
+    });
 }
 
-loadDashboard();
+async function loadSubscribers() {
+    const res = await fetch("/api/subscribers_list.php");
+    const data = await res.json();
+
+    const list = document.getElementById("subscriber-list");
+    list.innerHTML = "";
+
+    data.forEach(s => {
+        const li = document.createElement("li");
+        li.textContent = s.email;
+        list.appendChild(li);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadStats();
+    loadSubscribers();
+});
