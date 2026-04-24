@@ -22,7 +22,7 @@ LIMIT 5")->fetchAll(PDO::FETCH_ASSOC);
 
 <h1>📊 BibleBrew Admin Dashboard</h1>
 
-<div class="grid">
+<div class="grid" style="--grid-cols: 3;">
     <div class="card">
         <h2><?php echo $pageViews7; ?></h2>
         <p>Page Views (7 days)</p>
@@ -44,7 +44,7 @@ LIMIT 5")->fetchAll(PDO::FETCH_ASSOC);
 <div class="grid">
     <div class="card">
         <h3>Top Pages</h3>
-        <table>
+        <table class="admin-table">
             <tr>
                 <th>Path</th>
                 <th>Views</th>
@@ -60,7 +60,7 @@ LIMIT 5")->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="card">
         <h3>Top Downloads</h3>
-        <table>
+        <table class="admin-table">
             <tr>
                 <th>Title</th>
                 <th>Downloads</th>

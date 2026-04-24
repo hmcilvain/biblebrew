@@ -7,6 +7,18 @@ cors();
 // -- this is a get call to trigger the download
 
 
+$clientToken = $_SERVER['HTTP_X_DOWNLOAD_TOKEN'] ?? '';
+
+// Security Check
+if (!$clientToken || $clientToken !== ($_SESSION['download_token'] ?? '')) {
+    http_response_code(403);
+    echo json_encode(["status" => "error", "message" => "Forbidden: Invalid Token"]);
+    exit;
+}
+
+
+
+
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
