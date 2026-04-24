@@ -12,23 +12,18 @@ function uuidv4()
     return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
 
-$uploadDir = __DIR__ . '/../storage/';
-if (!is_dir($uploadDir)) {
-    mkdir($uploadDir, 0755, true);
-}
-
+$uploadDir = '/home/www/10minutebiblebrew.com/assets/downloads/';
 // --- Handle Create ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
     $uuid = uuidv4();
     $title = $_POST['title'] ?? '';
     $description = $_POST['description'] ?? '';
     $category = $_POST['category'] ?? '';
-
+    
     if (!empty($_FILES['file']['name'])) {
         $fileName = uniqid() . '_' . basename($_FILES['file']['name']);
         $targetPath = $uploadDir . $fileName;
-
-        move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);
+        move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);        
 
         $stmt = $db->prepare("INSERT INTO downloadables (uuid, title, description, file_path, file_name, mime_type, file_size, category) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([

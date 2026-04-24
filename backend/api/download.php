@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'db.php';
 require_once 'helpers.php';
 
@@ -6,20 +7,29 @@ cors();
 
 // -- this is a get call to trigger the download
 
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: Content-Type, X-Download-Token");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
+    http_response_code(200);
+    exit;
+}
 
 $clientToken = $_SERVER['HTTP_X_DOWNLOAD_TOKEN'] ?? '';
 
 // Security Check
 if (!$clientToken || $clientToken !== ($_SESSION['download_token'] ?? '')) {
     http_response_code(403);
-    echo json_encode(["status" => "error", "message" => "Forbidden: Invalid Token"]);
+    echo json_encode(["status" => "error", "message" => "Forbidden: Invalid Token", "detail_header"=>"clientToken:".$clientToken, "detail_session"=>$_SESSION['download_token']]);
     exit;
 }
 
 
+$data = getJsonInput();
 
 
-$id = $_GET['id'] ?? null;
+
+$id = $data['file'] ?? null;
 
 if (!$id) {
     jsonResponse(["error" => "Missing file"], 400);    
@@ -59,10 +69,14 @@ if (!file_exists($path)) {
     exit("Missing file on disk.");
 }
 
-// 4. Stream file
-header('Content-Type: ' . ($file['mime_type'] ?? 'application/octet-stream'));
-header('Content-Disposition: attachment; filename="' . basename($file['file_path']) . '"');
-header('Content-Length: ' . filesize($path));
-
-readfile($path);
-exit;
+// 4. Stream
+    header('Content-Description: File Transfer');
+    header('Content-Type: ' . ($file['mime_type'] ?? 'application/octet-stream'));
+    header('Content-Disposition: attachment; filename="' . basename($file['file_path']) . '"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($path));
+    
+    readfile($path);
+    exit;
