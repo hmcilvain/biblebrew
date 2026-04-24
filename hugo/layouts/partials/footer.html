@@ -1,5 +1,21 @@
 <footer class="site-footer">
-    <h1 class="copyright">© {{ now.Year }} 10-Minute Bible Brew</h1>
+    <div class="container grid" style="--grid-template: var(--layout-1-2)">
+        <div>
+            <h4>About 10-Minute Bible Brew</h4>
+            <p>10-Minute Bible Brew is a podcast and resource hub designed to help you dive into the Bible in a way that's engaging, accessible, and tailored to your busy lifestyle. Each episode offers a concise, 10-minute exploration of a specific Bible passage, providing insights, reflections, and practical applications to help you connect with God's Word on a deeper level.</p>
+        </div>
+
+        <div id="subscribe" class="card full-width">
+            <h3>Stay in the Word</h3>        
+            <p class="meta">Get new episodes and study guides delivered to your inbox.</p>        
+            <form method="POST" action="/api/subscribe.php" class="admin-form">        
+                <input type="email" name="email" placeholder="Email address" required>        
+                <button class="btn">Subscribe</button>        
+            </form>
+        </div>
+    </div>
+
+    <h5 class="copyright">© {{ now.Year }} 10-Minute Bible Brew</h5>
 </footer>
 
 

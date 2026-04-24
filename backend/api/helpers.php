@@ -52,7 +52,7 @@ function now_iso()
 function get_uid()
 {
     if (!empty($_COOKIE['bb_uid'])) return $_COOKIE['bb_uid'];
-    return 'anon_' . substr(md5(get_ip()), 0, 8);
+    return 'anon_' . substr(md5(getIP()), 0, 8);
 }
 
 function requirePost()

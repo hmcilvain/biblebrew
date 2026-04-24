@@ -30,12 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
 
         move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);
 
-        $stmt = $db->prepare("INSERT INTO downloadables (uuid, title, description, file_path, mime_type, file_size, category) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO downloadables (uuid, title, description, file_path, file_name, mime_type, file_size, category) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([
             $uuid,
             $title,
             $description,
             $fileName,
+            $_FILES['file']['name'],
             $_FILES['file']['type'],
             $_FILES['file']['size'],
             $category

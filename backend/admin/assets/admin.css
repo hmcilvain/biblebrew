@@ -1,11 +1,66 @@
-.stat p {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-top: var(--space-2);
+/* ADMIN LAYOUT ONLY */
+
+.admin-shell {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
 }
 
-#top-pages li,
-#subscriber-list li {
-    padding: var(--space-2) 0;
+/* Sidebar */
+.admin-sidebar {
+    background: var(--brew_color_dark_roast_2);
+    color: var(--brew_color_light_roast_2);
+    padding: var(--space-6);
+}
+
+.admin-sidebar h2 {
+    color: var(--brew_color_gold_highlight);
+    font-style: italic;
+}
+
+.admin-sidebar a {
+    display: block;
+    margin: var(--space-3) 0;
+    color: var(--brew_color_light_roast_2);
+    text-decoration: none;
+}
+
+.admin-sidebar a:hover {
+    color: var(--brew_color_burnt_orange);
+}
+
+/* Main content */
+.admin-main {
+    padding: var(--space-8);
+}
+
+/* Tables */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: var(--space-3);
     border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+/* Form inputs */
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+    width: 100%;
+    padding: var(--space-3);
+    margin-bottom: var(--space-4);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-family: var(--brew_font_sans_serif_family);
+}
+
+/* Action row */
+.admin-actions {
+    display: flex;
+    gap: var(--space-3);
 }

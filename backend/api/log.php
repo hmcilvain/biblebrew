@@ -3,16 +3,16 @@ require_once 'helpers.php';
 require_once 'dal.php';
 
 cors();
-require_post();
+requirePost();
 
-$data = get_json_input();
+$data = getJsonInput();
 
 DAL::logEvent([
     'type' => 'page_view',
     'uid'  => $data['uid'] ?? get_uid(),
     'path' => $data['path'] ?? '',
     'ref'  => $data['referrer'] ?? '',
-    'ip'   => get_ip()
+    'ip'   => getIP()
 ]);
 
 header('Content-Type: application/json');

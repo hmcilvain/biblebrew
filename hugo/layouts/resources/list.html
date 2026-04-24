@@ -15,12 +15,17 @@
     <h1>Downloadable Study Guides</h1>
     {{ range $guides }}
     <div class="resource-row">
-        <a href="/api/download.php?id={{ .Params.file_id }}">{{ .Title }}</a>
+        <a href="/api/download.php?id={{ .Params.file_id }}"
+            data-download="{{ .Params.file_id }}"
+            data-filename="{{ .Params.file_name}}"
+            class="download-link">{{ .Title }}</a>
         <span class="meta">Study Guide [{{upper .Params.file_type}}] for Episode Posted on {{ .Date.Format "April 2, 2006" }}</span>
     </div>
     {{ end }}
 </section>
 {{ end }}   
+
+<script src="/assets/js/downloads.js"></script>
 
 
 
